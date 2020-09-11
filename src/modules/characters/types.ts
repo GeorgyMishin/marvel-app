@@ -1,4 +1,4 @@
-import { Image } from '../../types'
+import { Image, DataPagination } from '../../types'
 
 export type Character = {
   id: number
@@ -6,3 +6,5 @@ export type Character = {
   description: string
   thumbnail: Image
 }
+
+export type CharacterPagination = DataPagination<Character>
