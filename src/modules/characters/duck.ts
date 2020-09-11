@@ -3,6 +3,7 @@ import {
   createReducer,
   getType,
   PayloadAction,
+  createAction,
 } from 'typesafe-actions'
 import { combineReducers } from 'redux'
 import { Character, CharacterPagination } from './types'
@@ -13,13 +14,9 @@ export const fetchCharacters = createAsyncAction(
   'GET_CHARACTERS_SUCCESS',
   'GET_CHARACTERS_FAILURE',
 )<undefined, CharacterPagination, Error>()
-export const fetchCharacterInfo = createAsyncAction(
-  'GET_CHARACTER_INFO_REQUEST',
-  'GET_CHARACTER_INFO_SUCCESS',
-  'GET_CHARACTER_INFO_FAILURE',
-)<string, CharacterPagination, Error>()
+export const resetCharacters = createAction('RESET_CHARACTERS')()
 
-const isCharactersLoading = createReducer<boolean>(false, {
+const isLoading = createReducer<boolean>(false, {
   [getType(fetchCharacters.request)]: () => true,
   [getType(fetchCharacters.success)]: () => false,
   [getType(fetchCharacters.failure)]: () => false,
@@ -45,6 +42,7 @@ const byId = createReducer<
         ...state,
       }
     },
+    [getType(resetCharacters)]: () => ({}),
   },
 )
 
@@ -56,13 +54,7 @@ const allIds = createReducer<
     ...state,
     ...payload.results.map((item) => item.id),
   ],
-})
-
-const selectedCharacter = createReducer<
-  Character | null,
-  PayloadAction<string, CharacterPagination>
->(null, {
-  [getType(fetchCharacterInfo.success)]: (_, { payload }) => payload.results[0],
+  [getType(resetCharacters)]: () => [],
 })
 
 const total = createReducer<number, PayloadAction<string, CharacterPagination>>(
@@ -73,11 +65,10 @@ const total = createReducer<number, PayloadAction<string, CharacterPagination>>(
 )
 
 const charactersReducer = combineReducers({
-  isCharactersLoading,
+  isLoading,
   byId,
   allIds,
   total,
-  selectedCharacter,
 })
 
 export default charactersReducer

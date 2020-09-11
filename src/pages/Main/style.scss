@@ -1,19 +1,37 @@
 .charactersList {
   display: flex;
   flex-wrap: wrap;
-  overflow: scroll;
+  overflow-y: scroll;
+  justify-content: center;
 }
 
 .characterItem {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 10px;
+  margin: 10px 0 10px 10px;
   width: 300px;
+
+  @media (max-width: 414px) {
+    width: 100%;
+  }
+}
+
+.characterViewButton {
+  width: 100px;
+
+  @media (max-width: 414px) {
+    width: 80%;
+  } 
 }
 
 .characterImage {
   width: 100px;
   height: 100px;
   border-radius: 50%;
+
+  @media (max-width: 414px) {
+    width: 150px;
+    height: 150px;
+  }
 }

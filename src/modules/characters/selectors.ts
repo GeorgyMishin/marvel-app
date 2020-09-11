@@ -3,7 +3,7 @@ import { ById } from '../../types'
 import { Character } from './types'
 
 export const getIsCharactersLoading = (state: RootState): boolean =>
-  state.characters.isCharactersLoading
+  state.characters.isLoading
 
 export const getCharactersById = (state: RootState): ById<Character> =>
   state.characters.byId

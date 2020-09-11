@@ -1,3 +1,5 @@
 export { default } from './duck'
 export { default as charactersSaga } from './sagas'
+export { default as CharacterManager } from './CharacterManager'
 export * from './duck'
+export * from './types'
