@@ -17,3 +17,18 @@ export const getCharactersList = (state: RootState): Character[] => {
 
   return allIds.map((id) => byId[id])
 }
+
+export const getCharactersError = (state: RootState): Error | null =>
+  state.characters.charactersError
+
+export const getCharactersTotal = (state: RootState) => state.characters.total
+
+export const getCharacterLoadedTotal = (state: RootState) =>
+  getCharactersList(state).length
+
+export const getCanLoadingMoreCharacters = (state: RootState) => {
+  const totalLoaded = getCharacterLoadedTotal(state)
+  const total = getCharactersTotal(state)
+
+  return total > totalLoaded
+}

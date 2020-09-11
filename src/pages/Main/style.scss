@@ -1,7 +1,6 @@
 .charactersList {
   display: flex;
   flex-wrap: wrap;
-  overflow-y: scroll;
   justify-content: center;
 }
 
@@ -22,7 +21,7 @@
 
   @media (max-width: 414px) {
     width: 80%;
-  } 
+  }
 }
 
 .characterImage {

@@ -64,11 +64,20 @@ const total = createReducer<number, PayloadAction<string, CharacterPagination>>(
   },
 )
 
+const charactersError = createReducer<
+  Error | null,
+  PayloadAction<string, Error | null>
+>(null, {
+  [getType(fetchCharacters.request)]: () => null,
+  [getType(fetchCharacters.failure)]: (_, { payload }) => payload,
+})
+
 const charactersReducer = combineReducers({
   isLoading,
   byId,
   allIds,
   total,
+  charactersError,
 })
 
 export default charactersReducer

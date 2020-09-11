@@ -5,8 +5,10 @@ import { fetchCharacters, resetCharacters } from '../../modules/characters'
 import {
   getCharactersList,
   getIsCharactersLoading,
+  getCharactersError,
+  getCanLoadingMoreCharacters,
 } from '../../modules/characters/selectors'
-import { MainPage } from '../../components'
+import { MainPage, Scroll } from '../../components'
 
 import './style.scss'
 
@@ -15,6 +17,8 @@ const Main: React.FC = () => {
   const dispatch = useDispatch()
   const characters = useSelector(getCharactersList)
   const isLoading = useSelector(getIsCharactersLoading)
+  const error = useSelector(getCharactersError)
+  const canLoadingMore = useSelector(getCanLoadingMoreCharacters)
 
   React.useEffect(() => {
     dispatch(fetchCharacters.request())
@@ -29,10 +33,16 @@ const Main: React.FC = () => {
     [history],
   )
 
+  const onEndReached = React.useCallback(() => {
+    if (canLoadingMore) {
+      dispatch(fetchCharacters.request())
+    }
+  }, [dispatch, canLoadingMore])
+
   return (
-    <MainPage isLoading={isLoading}>
+    <MainPage error={error} isLoading={isLoading}>
       {() => (
-        <div className="charactersList">
+        <Scroll onEndReached={onEndReached} className="charactersList">
           {characters.map((character) => (
             <div key={character.id} className="characterItem">
               <img
@@ -48,7 +58,7 @@ const Main: React.FC = () => {
               </button>
             </div>
           ))}
-        </div>
+        </Scroll>
       )}
     </MainPage>
   )
