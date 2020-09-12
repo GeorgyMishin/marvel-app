@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   fetchCharacterInfo,
@@ -23,6 +23,7 @@ const CharacterInfo: React.FC = () => {
     dispatch(fetchCharacterInfo.request(params.id))
 
     return () => {
+      dispatch(fetchCharacterInfo.cancel())
       dispatch(resetCharacterInfo())
     }
   }, [params, dispatch])
@@ -38,6 +39,19 @@ const CharacterInfo: React.FC = () => {
             />
             <p>{characterInfo.name}</p>
             <p>{characterInfo.description}</p>
+            {!!characterInfo.comics.available && (
+              <div>
+                <p>Comics</p>
+                <div>
+                  {characterInfo.comics.items.map((item, index) => (
+                    <p key={index}>{item.name}</p>
+                  ))}
+                  <Link to={(location) => `${location.pathname}/comics`}>
+                    See all
+                  </Link>
+                </div>
+              </div>
+            )}
           </div>
         )
       }

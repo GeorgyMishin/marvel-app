@@ -24,6 +24,7 @@ const Main: React.FC = () => {
     dispatch(fetchCharacters.request())
 
     return () => {
+      dispatch(fetchCharacters.cancel())
       dispatch(resetCharacters())
     }
   }, [dispatch])

@@ -13,7 +13,8 @@ export const fetchCharacters = createAsyncAction(
   'GET_CHARACTERS_REQUEST',
   'GET_CHARACTERS_SUCCESS',
   'GET_CHARACTERS_FAILURE',
-)<undefined, CharacterPagination, Error>()
+  'GET_CHARACTERS_CANCEL',
+)<undefined, CharacterPagination, Error, undefined>()
 export const resetCharacters = createAction('RESET_CHARACTERS')()
 
 const isLoading = createReducer<boolean>(false, {
@@ -61,6 +62,7 @@ const total = createReducer<number, PayloadAction<string, CharacterPagination>>(
   0,
   {
     [getType(fetchCharacters.success)]: (_, { payload }) => payload.total,
+    [getType(resetCharacters)]: () => 0,
   },
 )
 
@@ -70,6 +72,7 @@ const charactersError = createReducer<
 >(null, {
   [getType(fetchCharacters.request)]: () => null,
   [getType(fetchCharacters.failure)]: (_, { payload }) => payload,
+  [getType(resetCharacters)]: () => null,
 })
 
 const charactersReducer = combineReducers({

@@ -1,0 +1,6 @@
+export { default } from './duck'
+export { default as ComicsManager } from './ComicsManager'
+export * from './types'
+export * from './duck'
+export * from './selectors'
+export { default as comicsSaga } from './sagas'

@@ -4,6 +4,7 @@ import CharacterManager from './CharacterManager'
 import { CharacterPagination } from './types'
 import { getCharacterLoadedTotal } from './selectors'
 import { PAGE_LIMIT } from '../../constants'
+import { cancelable } from '../../utils/sagas'
 
 function* fetchCharactersSaga() {
   try {
@@ -19,7 +20,12 @@ function* fetchCharactersSaga() {
 }
 
 function* characters() {
-  yield all([takeLatest(fetchCharacters.request, fetchCharactersSaga)])
+  yield all([
+    takeLatest(
+      fetchCharacters.request,
+      cancelable(fetchCharacters.cancel, fetchCharactersSaga),
+    ),
+  ])
 }
 
 export default characters
