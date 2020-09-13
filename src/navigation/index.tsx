@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { Menu } from '../components'
-import { Main, CharacterInfo, Comics, Series, Events } from '../pages'
+import { Main, CharacterInfo, Comics, Series, Events, Stories } from '../pages'
 
 const Navigation: React.FC = () => (
   <BrowserRouter>
@@ -10,7 +10,7 @@ const Navigation: React.FC = () => (
       <Route path="/" component={Main} exact />
       <Route path="/character/:characterId/comics" component={Comics} />
       <Route path="/character/:characterId/series" component={Series} />
-      <Route path="/character/:characterId/stories" component={() => null} />
+      <Route path="/character/:characterId/stories" component={Stories} />
       <Route path="/character/:characterId/events" component={Events} />
       <Route path="/character/:id" exact component={CharacterInfo} />
     </Switch>
