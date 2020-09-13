@@ -8,7 +8,13 @@ import {
   getCharactersError,
   getCanLoadingMoreCharacters,
 } from '../../modules/characters/selectors'
-import { MainPage, Scroll, CharacterItem } from '../../components'
+import {
+  MainPage,
+  Scroll,
+  CharacterItem,
+  PaginationLoader,
+  PaginationError,
+} from '../../components'
 
 import './style.scss'
 
@@ -35,21 +41,35 @@ const Main: React.FC = () => {
   )
 
   const onEndReached = React.useCallback(() => {
-    if (canLoadingMore) {
+    if (canLoadingMore && !error) {
       dispatch(fetchCharacters.request())
     }
-  }, [dispatch, canLoadingMore])
+  }, [dispatch, canLoadingMore, error])
+
+  const onRepeatClick = React.useCallback(() => {
+    dispatch(fetchCharacters.request())
+  }, [dispatch])
 
   return (
-    <MainPage error={error} isLoading={isLoading}>
+    <MainPage
+      error={error}
+      isLoading={isLoading}
+      enableError={characters.length === 0}
+      enablePreloader={characters.length === 0}
+    >
       {() => (
         <Scroll className="scrollView" onEndReached={onEndReached}>
           {characters.map((character) => (
             <CharacterItem
+              key={character.id}
               item={character}
               onViewPress={() => redirectToCharacter(character.id)}
             />
           ))}
+          {isLoading && characters.length > 0 && <PaginationLoader />}
+          {!!error && (
+            <PaginationError error={error} onRepeatClick={onRepeatClick} />
+          )}
         </Scroll>
       )}
     </MainPage>

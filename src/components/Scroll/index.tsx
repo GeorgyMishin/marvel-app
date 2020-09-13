@@ -8,6 +8,7 @@ type ScrollProps = {
   onEndReached?: () => void
   onScroll?: (scroll: number) => void
   endReachedInterval?: number
+  renderFooter?: () => React.ReactNode
 }
 
 const Scroll: React.FC<ScrollProps> = ({
@@ -15,6 +16,7 @@ const Scroll: React.FC<ScrollProps> = ({
   onEndReached,
   onScroll,
   children,
+  renderFooter,
 }) => {
   const classNames = classnames('mainScroll', className)
   const scrollRef = React.useRef<HTMLDivElement>(null)
@@ -36,6 +38,7 @@ const Scroll: React.FC<ScrollProps> = ({
   return (
     <div ref={scrollRef} onScroll={onScrollEvent} className={classNames}>
       {children}
+      {renderFooter?.()}
     </div>
   )
 }
