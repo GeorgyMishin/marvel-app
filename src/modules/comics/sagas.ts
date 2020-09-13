@@ -10,7 +10,6 @@ import { cancelable } from '../../utils/sagas'
 function* fetchComicsSaga(action: PayloadAction<string, number>) {
   try {
     const loaded = yield select(getComicsLoadedTotal)
-    // TODO: fixme
     const characters: ComicsPagination = yield call<any>(
       ComicsManager.getComics,
       {

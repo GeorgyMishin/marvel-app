@@ -10,7 +10,6 @@ import { cancelable } from '../../utils/sagas'
 function* fetchSeriesSaga(action: PayloadAction<string, number>) {
   try {
     const loaded = yield select(getSeriesLoadedTotal)
-    // TODO: fixme
     const characters: SeriesPagination = yield call<any>(
       SeriesManager.getSeries,
       {
