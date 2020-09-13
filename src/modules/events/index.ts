@@ -1,0 +1,6 @@
+export { default } from './duck'
+export { default as EventsManager } from './EventsManager'
+export * from './types'
+export * from './duck'
+export * from './selectors'
+export { default as eventsSaga } from './sagas'
