@@ -7,6 +7,10 @@
   display: flex;
   overflow-x: scroll;
   align-items: center;
+
+  :first-child {
+    margin-left: 0;
+  }
 }
 
 .infoItem {
@@ -19,15 +23,15 @@
   background-color: red;
   border-radius: 10px;
   margin-left: 10px;
-
-  :first {
-    margin-left: 0;
-  }
 }
 
 .infoItemName {
   text-align: center;
   margin: 2px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .moreItemText {

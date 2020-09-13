@@ -8,8 +8,9 @@ import {
   getCharacterInfo,
   getCharacterInfoError,
 } from '../../modules/characterInfo'
-import { characterItemsInfoFactory, MainPage, Scroll } from '../../components'
-import { NormalizeItem } from '../../components/characterItemsInfoFactory'
+import { MainPage, Scroll } from '../../components'
+import { characterItemsInfoFactory } from '../../components/factories'
+import { NormalizeItem } from '../../components/factories/characterItemsInfoFactory'
 import {
   ComicsPreview,
   EventsPreview,
@@ -85,7 +86,11 @@ const CharacterInfo: React.FC = () => {
   }, [params, dispatch])
 
   return (
-    <MainPage isLoading={isLoading} error={characterInfoError}>
+    <MainPage
+      isLoading={isLoading}
+      error={characterInfoError}
+      rewriteContentOnEvents
+    >
       {() =>
         characterInfo && (
           <Scroll>
