@@ -47,7 +47,7 @@ const characterInfoPageListFactory = <T,>({
             <div key={normalizedItem.id}>
               <img
                 alt={normalizedItem.title}
-                className="comicsImage"
+                className="pageListImage"
                 src={normalizedItem.image}
               />
               <p>{normalizedItem.title}</p>

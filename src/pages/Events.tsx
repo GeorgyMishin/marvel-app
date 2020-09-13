@@ -10,7 +10,6 @@ import {
   resetEvents,
   Events as EventsType,
 } from '../modules/events'
-import { MainPage, Scroll } from '../components'
 import { characterInfoPageListFactory } from '../components/factories'
 import { NormalizedItem } from '../components/factories/characterInfoPageListFactory'
 
