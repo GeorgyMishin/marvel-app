@@ -1,0 +1,6 @@
+export { default } from './duck'
+export { default as SeriesManager } from './SeriesManager'
+export * from './types'
+export * from './duck'
+export * from './selectors'
+export { default as seriesSaga } from './sagas'

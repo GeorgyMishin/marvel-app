@@ -4,6 +4,7 @@ import characterInfo from './characterInfo'
 import comics from './comics'
 import events from './events'
 import stories from './stories'
+import series from './series'
 
 const rootReducer = combineReducers({
   characters,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   comics,
   events,
   stories,
+  series,
 })
 
 export default rootReducer

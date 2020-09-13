@@ -4,6 +4,7 @@ import { characterInfoSaga } from './characterInfo'
 import { comicsSaga } from './comics'
 import { eventsSaga } from './events'
 import { storiesSaga } from './stories'
+import { seriesSaga } from './series'
 
 function* rootSaga() {
   yield all([
@@ -12,6 +13,7 @@ function* rootSaga() {
     call(comicsSaga),
     call(eventsSaga),
     call(storiesSaga),
+    call(seriesSaga),
   ])
 }
 
