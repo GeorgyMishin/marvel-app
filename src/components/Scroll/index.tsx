@@ -17,6 +17,7 @@ const Scroll: React.FC<ScrollProps> = ({
   children,
 }) => {
   const classNames = classnames('mainScroll', className)
+  const scrollRef = React.useRef<HTMLDivElement>(null)
 
   const onScrollEvent = React.useCallback(
     (event: React.UIEvent<HTMLElement>) => {
@@ -33,7 +34,7 @@ const Scroll: React.FC<ScrollProps> = ({
   )
 
   return (
-    <div onScroll={onScrollEvent} className={classNames}>
+    <div ref={scrollRef} onScroll={onScrollEvent} className={classNames}>
       {children}
     </div>
   )

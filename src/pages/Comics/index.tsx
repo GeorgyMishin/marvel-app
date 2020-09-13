@@ -28,7 +28,7 @@ const Comics: React.FC = () => {
       dispatch(fetchComics.cancel())
       dispatch(resetComics())
     }
-  }, [characterId])
+  }, [characterId, dispatch])
 
   return (
     <MainPage error={error} isLoading={isLoading}>
@@ -41,6 +41,7 @@ const Comics: React.FC = () => {
           {comics.map((item) => (
             <div key={item.id}>
               <img
+                alt={item.title}
                 className="comicsImage"
                 src={`${item.thumbnail.path}.${item.thumbnail.extension}`}
               />

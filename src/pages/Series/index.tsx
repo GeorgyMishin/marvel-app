@@ -28,7 +28,7 @@ const Series: React.FC = () => {
       dispatch(fetchSeries.cancel())
       dispatch(resetSeries())
     }
-  }, [characterId])
+  }, [characterId, dispatch])
 
   return (
     <MainPage error={error} isLoading={isLoading}>
@@ -42,6 +42,7 @@ const Series: React.FC = () => {
             <div key={item.id}>
               {!!item.thumbnail && (
                 <img
+                  alt={item.title}
                   className="comicsImage"
                   src={`${item.thumbnail.path}.${item.thumbnail.extension}`}
                 />

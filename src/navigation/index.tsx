@@ -1,7 +1,15 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { Menu } from '../components'
-import { Main, CharacterInfo, Comics, Series, Events, Stories } from '../pages'
+import {
+  Main,
+  CharacterInfo,
+  Comics,
+  Series,
+  Events,
+  Stories,
+  NotFound,
+} from '../pages'
 
 const Navigation: React.FC = () => (
   <BrowserRouter>
@@ -13,6 +21,7 @@ const Navigation: React.FC = () => (
       <Route path="/character/:characterId/stories" component={Stories} />
       <Route path="/character/:characterId/events" component={Events} />
       <Route path="/character/:id" exact component={CharacterInfo} />
+      <Route path="*" component={NotFound} />
     </Switch>
   </BrowserRouter>
 )

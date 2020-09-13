@@ -1,5 +1,8 @@
 .menu {
+  display: flex;
+  align-items: center;
   width: 100vw;
   height: 80px;
-  background-color: black;
+  max-height: 80px;
+  background-color: #202020;
 }

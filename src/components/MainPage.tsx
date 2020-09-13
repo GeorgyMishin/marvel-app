@@ -1,4 +1,5 @@
 import React from 'react'
+import classnames from 'classnames'
 
 type MainPageProps = {
   isLoading: boolean
@@ -18,12 +19,15 @@ const MainPage: React.FC<MainPageProps> = ({
   renderPreloader = defaultPreloader,
   className,
   children,
-}) => (
-  <div className={className}>
-    {(isLoading || error) && rewriteContentOnEvents ? null : children()}
-    {isLoading && renderPreloader()}
-    {!!error && <div>{error.message}</div>}
-  </div>
-)
+}) => {
+  const classname = classnames(className, 'mainPage')
+  return (
+    <div className={classname}>
+      {(isLoading || error) && rewriteContentOnEvents ? null : children()}
+      {isLoading && renderPreloader()}
+      {!!error && <div>{error.message}</div>}
+    </div>
+  )
+}
 
 export default MainPage

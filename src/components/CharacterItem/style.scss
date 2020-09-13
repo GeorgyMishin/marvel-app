@@ -1,0 +1,64 @@
+.characterItem {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-top: 10px;
+  width: 100%;
+
+  @media (max-width: 414px) {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.characterInfoContainer {
+  display: flex;
+  flex: 1;
+  height: 200px;
+  max-height: 200px;
+  flex-direction: column;
+  margin-left: 10px;
+
+  @media (max-width: 414px) {
+    height: auto;
+    margin-top: 10px;
+    margin-left: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+.characterName {
+  margin: 0;
+}
+
+.characterDescription {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.characterViewButton {
+  width: 100px;
+  height: 20px;
+  justify-self: end;
+  margin-top: auto;
+
+  @media (max-width: 414px) {
+    width: 100%;
+  }
+}
+
+.characterImage {
+  width: 200px;
+  height: 200px;
+
+  @media (max-width: 414px) {
+    height: auto;
+    margin-left: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+}

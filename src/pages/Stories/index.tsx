@@ -28,7 +28,7 @@ const Events: React.FC = () => {
       dispatch(fetchStories.cancel())
       dispatch(resetStories())
     }
-  }, [characterId])
+  }, [characterId, dispatch])
 
   return (
     <MainPage error={error} isLoading={isLoading}>
@@ -43,6 +43,7 @@ const Events: React.FC = () => {
             <div key={item.id}>
               {!!item.thumbnail && (
                 <img
+                  alt={item.title}
                   className="comicsImage"
                   src={`${item.thumbnail.path}.${item.thumbnail.extension}`}
                 />

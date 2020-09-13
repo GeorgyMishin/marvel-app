@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   fetchCharacterInfo,
@@ -92,6 +92,7 @@ const CharacterInfo: React.FC = () => {
             <img
               src={`${characterInfo.thumbnail.path}.${characterInfo.thumbnail.extension}`}
               className="characterImage"
+              alt={characterInfo.name}
             />
             <p>{characterInfo.name}</p>
             <p>Description: {characterInfo.description || 'No description'}</p>

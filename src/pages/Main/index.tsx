@@ -8,7 +8,7 @@ import {
   getCharactersError,
   getCanLoadingMoreCharacters,
 } from '../../modules/characters/selectors'
-import { MainPage, Scroll } from '../../components'
+import { MainPage, Scroll, CharacterItem } from '../../components'
 
 import './style.scss'
 
@@ -43,21 +43,12 @@ const Main: React.FC = () => {
   return (
     <MainPage error={error} isLoading={isLoading}>
       {() => (
-        <Scroll onEndReached={onEndReached} className="charactersList">
+        <Scroll className="scrollView" onEndReached={onEndReached}>
           {characters.map((character) => (
-            <div key={character.id} className="characterItem">
-              <img
-                src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-                className="characterImage"
-              />
-              <p>{character.name}</p>
-              <button
-                className="characterViewButton"
-                onClick={() => redirectToCharacter(character.id)}
-              >
-                View
-              </button>
-            </div>
+            <CharacterItem
+              item={character}
+              onViewPress={() => redirectToCharacter(character.id)}
+            />
           ))}
         </Scroll>
       )}
