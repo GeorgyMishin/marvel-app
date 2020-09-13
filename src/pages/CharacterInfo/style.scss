@@ -1,0 +1,36 @@
+.container {
+  overflow-y: scroll;
+  height: 100%;
+}
+
+.infoList {
+  display: flex;
+  overflow-x: scroll;
+  align-items: center;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  width: 120px;
+  height: 120px;
+  background-color: red;
+  border-radius: 10px;
+  margin-left: 10px;
+
+  :first {
+    margin-left: 0;
+  }
+}
+
+.infoItemName {
+  text-align: center;
+  margin: 2px;
+}
+
+.moreItemText {
+  text-decoration: none;
+  color: black;
+}

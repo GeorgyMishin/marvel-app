@@ -22,3 +22,9 @@ export type ResponseData<T> = {
   copyright: string
   data: T
 }
+
+export type EntityPreviews<T> = {
+  available: number
+  collectionURI: string
+  items: T[]
+}

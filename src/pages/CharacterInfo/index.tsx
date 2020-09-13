@@ -8,9 +8,65 @@ import {
   getCharacterInfo,
   getCharacterInfoError,
 } from '../../modules/characterInfo'
-import { MainPage } from '../../components'
+import { characterItemsInfoFactory, MainPage, Scroll } from '../../components'
+import { NormalizeItem } from '../../components/characterItemsInfoFactory'
+import {
+  ComicsPreview,
+  EventsPreview,
+  StoriesPreview,
+  SeriesPreview,
+} from '../../modules/characters'
 
 import './style.scss'
+
+const comicsNormalizer = (item: ComicsPreview): NormalizeItem => ({
+  description: item.name,
+})
+const eventsNormalizer = (item: EventsPreview): NormalizeItem => ({
+  description: item.name,
+})
+const storiesNormalizer = (item: StoriesPreview): NormalizeItem => ({
+  description: item.name,
+})
+const seriesNormalizer = (item: SeriesPreview): NormalizeItem => ({
+  description: item.name,
+})
+
+const Comics = characterItemsInfoFactory<ComicsPreview>({
+  normalizer: comicsNormalizer,
+  title: 'Comics',
+  initialContainerClassName: 'infoList',
+  initialItemClassName: 'infoItem',
+  initialTitleClassName: 'infoItemName',
+  link: 'comics',
+})
+
+const Events = characterItemsInfoFactory<EventsPreview>({
+  normalizer: eventsNormalizer,
+  title: 'Events',
+  initialContainerClassName: 'infoList',
+  initialItemClassName: 'infoItem',
+  initialTitleClassName: 'infoItemName',
+  link: 'events',
+})
+
+const Stories = characterItemsInfoFactory<StoriesPreview>({
+  normalizer: storiesNormalizer,
+  title: 'Stories',
+  initialContainerClassName: 'infoList',
+  initialItemClassName: 'infoItem',
+  initialTitleClassName: 'infoItemName',
+  link: 'stories',
+})
+
+const Series = characterItemsInfoFactory<SeriesPreview>({
+  normalizer: seriesNormalizer,
+  title: 'Series',
+  initialContainerClassName: 'infoList',
+  initialItemClassName: 'infoItem',
+  initialTitleClassName: 'infoItemName',
+  link: 'series',
+})
 
 const CharacterInfo: React.FC = () => {
   const params = useParams<{ id: string }>()
@@ -32,27 +88,26 @@ const CharacterInfo: React.FC = () => {
     <MainPage isLoading={isLoading} error={characterInfoError}>
       {() =>
         characterInfo && (
-          <div>
+          <Scroll>
             <img
               src={`${characterInfo.thumbnail.path}.${characterInfo.thumbnail.extension}`}
               className="characterImage"
             />
             <p>{characterInfo.name}</p>
-            <p>{characterInfo.description}</p>
+            <p>Description: {characterInfo.description || 'No description'}</p>
             {!!characterInfo.comics.available && (
-              <div>
-                <p>Comics</p>
-                <div>
-                  {characterInfo.comics.items.map((item, index) => (
-                    <p key={index}>{item.name}</p>
-                  ))}
-                  <Link to={(location) => `${location.pathname}/comics`}>
-                    See all
-                  </Link>
-                </div>
-              </div>
+              <Comics items={characterInfo.comics.items} />
             )}
-          </div>
+            {!!characterInfo.events.available && (
+              <Events items={characterInfo.events.items} />
+            )}
+            {!!characterInfo.stories.available && (
+              <Stories items={characterInfo.stories.items} />
+            )}
+            {!!characterInfo.series.available && (
+              <Series items={characterInfo.series.items} />
+            )}
+          </Scroll>
         )
       }
     </MainPage>
