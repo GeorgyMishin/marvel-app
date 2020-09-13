@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Initial
+
+For start testing create .env file in root directory with keys REACT_APP_API_URL, REACT_APP_PUBLIC_API_KEY, REACT_APP_PRIVATE_API_KEY
+
 ## Available Scripts
 
 In the project directory, you can run:
