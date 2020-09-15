@@ -41,10 +41,10 @@ const Main: React.FC = () => {
   )
 
   const onEndReached = React.useCallback(() => {
-    if (canLoadingMore && !error) {
+    if (canLoadingMore && !error && !isLoading) {
       dispatch(fetchCharacters.request())
     }
-  }, [dispatch, canLoadingMore, error])
+  }, [dispatch, canLoadingMore, error, isLoading])
 
   const onRepeatClick = React.useCallback(() => {
     dispatch(fetchCharacters.request())

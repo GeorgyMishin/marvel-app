@@ -41,8 +41,9 @@ const Comics: React.FC = () => {
   const onEndReached = React.useCallback(() => {
     canLoadingMore &&
       !error &&
+      !isLoading &&
       dispatch(fetchComics.request(Number(characterId)))
-  }, [canLoadingMore, dispatch, error, characterId])
+  }, [canLoadingMore, dispatch, error, characterId, isLoading])
 
   const onRepeatClick = React.useCallback(() => {
     dispatch(fetchComics.request(Number(characterId)))

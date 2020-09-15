@@ -43,8 +43,9 @@ const Events: React.FC = () => {
   const onEndReached = React.useCallback(() => {
     canLoadingMore &&
       !error &&
+      !isLoading &&
       dispatch(fetchEvents.request(Number(characterId)))
-  }, [canLoadingMore, dispatch, error, characterId])
+  }, [canLoadingMore, dispatch, error, characterId, isLoading])
 
   const onRepeatClick = React.useCallback(() => {
     dispatch(fetchEvents.request(Number(characterId)))
