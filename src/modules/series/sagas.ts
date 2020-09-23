@@ -7,7 +7,7 @@ import { PAGE_LIMIT } from '../../constants'
 import { PayloadAction } from 'typesafe-actions'
 import { cancelable } from '../../utils/sagas'
 
-function* fetchSeriesSaga(action: PayloadAction<string, number>) {
+export function* fetchSeriesSaga(action: PayloadAction<string, number>) {
   try {
     const loaded = yield select(getSeriesLoadedTotal)
     const characters: SeriesPagination = yield call<any>(

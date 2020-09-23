@@ -7,7 +7,9 @@ export const cancelable = (cancelAction: any, saga: any) =>
 
     const { canceled } = yield race({
       complete: join(task),
-      canceled: take(getType(cancelAction)),
+      canceled: take(
+        typeof cancelAction === 'string' ? cancelAction : getType(cancelAction),
+      ),
     })
 
     if (canceled) {

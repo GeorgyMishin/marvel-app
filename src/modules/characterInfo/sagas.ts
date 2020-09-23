@@ -4,7 +4,7 @@ import { fetchCharacterInfo } from './duck'
 import { CharacterManager, CharacterPagination } from '../characters'
 import { cancelable } from '../../utils/sagas'
 
-function* fetchCharacterInfoSaga(action: PayloadAction<string, string>) {
+export function* fetchCharacterInfoSaga(action: PayloadAction<string, string>) {
   try {
     const characterInfo: CharacterPagination = yield call(
       CharacterManager.getCharacters,

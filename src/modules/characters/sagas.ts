@@ -6,7 +6,7 @@ import { getCharacterLoadedTotal } from './selectors'
 import { PAGE_LIMIT } from '../../constants'
 import { cancelable } from '../../utils/sagas'
 
-function* fetchCharactersSaga() {
+export function* fetchCharactersSaga() {
   try {
     const loaded = yield select(getCharacterLoadedTotal)
     const characters: CharacterPagination = yield call(
